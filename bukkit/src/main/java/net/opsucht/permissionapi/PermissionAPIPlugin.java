@@ -72,7 +72,14 @@ public class PermissionAPIPlugin extends JavaPlugin {
             }
         }
 
-        LOGGER.warning(String.format("No compatible permission provider for 'permissionapi' found. " + "Please install one of the following plugins on your server: %s! " + "Disabling Plugin", providers.values().parallelStream().map(s -> "'" + s + "'").collect(Collectors.joining(", "))));
+        LOGGER.warning(String.format("No compatible permission provider for 'permissionapi' found. " +
+                        "Please install one of the following plugins on your server: %s! " +
+                        "Disabling Plugin",
+                providers.values()
+                        .parallelStream()
+                        .map(s -> "'" + s + "'")
+                        .collect(Collectors.joining(", "))
+        ));
         pm.disablePlugin(this);
     }
 

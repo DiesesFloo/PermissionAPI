@@ -32,7 +32,7 @@ dependencyResolutionManagement {
 }
 ```
 **Step 3**   
-Add repository to project   
+Add dependency to project   
 </br>
 _Maven (pom.xml):_
 ```xml

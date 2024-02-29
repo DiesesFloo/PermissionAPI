@@ -4,7 +4,7 @@
 - [GroupManager v3.2](https://www.spigotmc.org/resources/groupmanager.38875/)
 - [LuckPerms](https://luckperms.net/)
 
-### How to use the API? 
+### How to install the API? 
 **Step 1**   
 Add the [Spigot plugin](https://github.com/DiesesFloo/PermissionAPI/releases/download/1.0.0/PermissionAPI-bukkit-1.0.0.jar)
 to your server.   
@@ -46,5 +46,28 @@ _Gradle (build.gradle)_
 ```groovy
 dependencies {
     implementation 'com.github.DiesesFloo.PermissionAPI:api:1.0.0'
+}
+```
+### How to use the API? 
+Check if player has a permission
+```java
+public boolean playerHasPermission(UUID uuid, String permission) {
+    if (!Permission.isInitialized()) return false;
+    return Permission.get().has(uuid, permission); 
+}
+```
+
+Add permission to player
+```java
+public void addPermissionToPlayer(UUID uuid, String permission) {
+    if (!Permission.isInitialized()) return;
+    Permission.get().add(uuid, permission); 
+}
+```
+Remove permission from player
+```java
+public void addPermissionToPlayer(UUID uuid, String permission) {
+    if (!Permission.isInitialized()) return;
+    Permission.get().remove(uuid, permission); 
 }
 ```

@@ -6,14 +6,14 @@
     <parent>
         <groupId>net.opsucht</groupId>
         <artifactId>permissionapi</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.0.0</version>
     </parent>
 
     <artifactId>bukkit</artifactId>
     <packaging>jar</packaging>
 
     <build>
-        <finalName>PermissionAPI-${artifactId}-${project.version}</finalName>
+        <finalName>PermissionAPI-${project.artifactId}-${project.version}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

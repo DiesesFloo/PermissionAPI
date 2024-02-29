@@ -6,7 +6,7 @@
     <parent>
         <groupId>net.opsucht</groupId>
         <artifactId>permissionapi</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.0.0</version>
     </parent>
 
     <artifactId>api</artifactId>
@@ -18,7 +18,7 @@
     </properties>
 
     <build>
-        <finalName>PermissionAPI-${artifactId}-${parent.version}</finalName>
+        <finalName>PermissionAPI-${project.artifactId}-${project.artifactId}</finalName>
     </build>
 
 </project>

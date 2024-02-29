@@ -21,8 +21,6 @@ public class PermissionAPIPlugin extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        getCommand("test").setExecutor(new TestCommand());
-
         setup();
     }
 

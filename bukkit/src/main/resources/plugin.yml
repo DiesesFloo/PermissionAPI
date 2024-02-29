@@ -6,7 +6,3 @@ softdepend:
   - 'LuckPerms'
   - 'GroupManager'
   - 'PermissionsEx'
-commands:
-  test:
-    description: "Test command for testing features"
-    usage: "/test"

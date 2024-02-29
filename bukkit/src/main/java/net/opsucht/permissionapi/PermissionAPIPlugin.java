@@ -1,6 +1,5 @@
 package net.opsucht.permissionapi;
 
-import net.opsucht.permissionapi.commands.TestCommand;
 import net.opsucht.permissionapi.provider.GMPermissionProviderImpl;
 import net.opsucht.permissionapi.provider.LPPermissionProviderImpl;
 import net.opsucht.permissionapi.provider.PEXPermissionProviderImpl;

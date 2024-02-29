@@ -46,10 +46,8 @@ public class GMPermissionProviderImpl extends AbstractPermissionProviderImpl {
 
     @Override
     public void removePermission(@NotNull UUID uuid, @NotNull String permission) {
-        final AnjoPermissionsHandler handler = groupManager.getWorldsHolder().getDefaultWorld().getPermissionsHandler();
-        if (handler == null) return;
-
-        handler.removeUserInfo(uuid.toString(), permission);
+        final User user = groupManager.getWorldsHolder().getDefaultWorld().getUser(uuid.toString());
+        user.removePermission(permission);
     }
 
     @Override

@@ -16,6 +16,7 @@ import java.util.logging.Logger;
 
 public abstract class AbstractPermissionProviderImpl implements PermissionProvider {
     protected static final Logger LOGGER = Bukkit.getLogger();
+    protected static final ExecutorService EXECUTOR = Executors.newCachedThreadPool();
 
     @Override
     public boolean has(@NotNull UUID uuid, @NotNull String permission) {
@@ -27,14 +28,14 @@ public abstract class AbstractPermissionProviderImpl implements PermissionProvid
 
     @Override
     public void add(@NotNull UUID uuid, @NotNull String permission) {
-        executeRunnable(() -> addPermission(uuid, permission));
+        EXECUTOR.submit(() -> addPermission(uuid, permission));
     }
 
     protected abstract void addPermission(@NotNull UUID uuid, @NotNull String permission);
 
     @Override
     public void remove(@NotNull UUID uuid, @NotNull String permission) {
-        executeRunnable(() -> removePermission(uuid, permission));
+        EXECUTOR.submit(() -> removePermission(uuid, permission));
     }
 
     protected abstract void removePermission(@NotNull UUID uuid, @NotNull String permission);
@@ -64,27 +65,13 @@ public abstract class AbstractPermissionProviderImpl implements PermissionProvid
      * @return the result of the callable
      */
     private <T> Optional<T> submitCallable(Callable<T> c) {
-        ExecutorService executor = Executors.newSingleThreadExecutor();
         try {
-            T result = executor.submit(c).get();
-            executor.shutdown();
+            T result = EXECUTOR.submit(c).get();
             return Optional.of(result);
         } catch (InterruptedException | ExecutionException e) {
-            executor.execute(() -> LOGGER.warning(e.getMessage()));
-            executor.shutdown();
+            EXECUTOR.execute(() -> LOGGER.warning(e.getMessage()));
             return Optional.empty();
         }
-    }
-
-    /**
-     * Executes a runnable in a new executor
-     *
-     * @param runnable to execute
-     */
-    private void executeRunnable(Runnable runnable) {
-        ExecutorService executor = Executors.newSingleThreadExecutor();
-        executor.execute(runnable);
-        executor.shutdown();
     }
 
 }
